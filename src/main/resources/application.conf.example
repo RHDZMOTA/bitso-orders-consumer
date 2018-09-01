@@ -1,0 +1,64 @@
+application = {
+  cassandra = {
+    address = "127.0.0.1"
+    port = "9042"
+    keyspaceName = "bitso"
+    trades = {
+      table = "trades"
+      parallelism = "10"
+    }
+    orders = {
+      table = "orders"
+      parallelism = "50"
+    }
+  }
+  bitso = {
+    ws = "wss://ws.bitso.com"
+    subscription = {
+      json = {
+        string = "{ \"action\": \"subscribe\", \"book\": \"<book>\", \"type\": \"<type>\" }"
+        replace = {
+          book = "<book>"
+          type = "<type>"
+        }
+      }
+      labels = {
+        orders = "orders"
+        trades = "trades"
+        diff   = "diff-orders"
+      }
+    }
+    coins = {
+      btc = {
+        mxn = {
+          label = "btc_mxn"
+        }
+      }
+      eth = {
+        mxn = {
+          label = "eth_mxn"
+        }
+      }
+      xrp = {
+        mxn = {
+          label = "xrp_mxn"
+        }
+      }
+      ltc = {
+        mxn = {
+          label = "ltc_mxn"
+        }
+      }
+      bch = {
+        mxn = {
+          label = "bch_mxn"
+        }
+      }
+      tusd = {
+        mxn = {
+          label = "tusd_mxn"
+        }
+      }
+    }
+  }
+}
